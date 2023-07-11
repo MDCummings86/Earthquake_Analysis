@@ -78,6 +78,54 @@ function createMap(earthquakes) {
 
 }
 
+// Create a control for our layers, and add our overlays to it.
+L.control.layers(baseMaps, overlayMaps, {
+    collapsed: false
+}).addTo(map);
+
+// Create a legend to display information about our map.
+let info = L.control({
+    position: "bottomright"
+  });
+
+  // When the layer control is added, insert a div with the class of "legend".
+info.onAdd = function() {
+    let div = L.DomUtil.create("div", "legend");
+    return div;
+  };
+  // Add the info legend to the map.
+  info.addTo(map)
+  
+  
+
+// // Loop through the cities array, and create one marker for each city object.
+// for (let i = 0; i < data.length; i++) {
+
+//     // Conditionals for country gdp_pc
+//     let color = "";
+//     if (data[i].features > 100000) {
+//       color = "yellow";
+//     }
+//     else if (data[i].features > 75000) {
+//       color = "blue";
+//     }
+//     else if (data[i].features > 50000) {
+//       color = "green";
+//     }
+//     else {
+//       color = "violet";
+//     }
+  
+//     // Add circles to the map.
+//     L.circle(data[i].location, {
+//       fillOpacity: 0.75,
+//       color: "white",
+//       fillColor: color,
+//       // Adjust the radius.
+//       radius: Math.sqrt(data[i].features) * 500
+//     }).bindPopup(`<h1>${data[i].name}</h1> <hr> <h3>GDP Per Capita (USD): ${countries[i].gdp_pc}</h3>`).addTo(myMap);
+//   }
+  
   
 
 
