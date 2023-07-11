@@ -95,8 +95,6 @@ info.onAdd = function() {
   };
   // Add the info legend to the map.
   info.addTo(map)
-  
-  ////////////////////////////////////////
 
   function createFeatures(earthquakeData) {
 
