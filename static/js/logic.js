@@ -98,6 +98,7 @@ info.onAdd = function() {
 
   function createFeatures(earthquakeData) {
 
+  // Create circle markers bound to lat and long with opacity so they can be seen on top of one another
   function onEachFeature(features, layer){
     layer.bindPopup(`<h3>${features.properties.place}</h3><hr><p>${new Date(features.properties.time)}</p><h3>Mag: ${features.properties.mag}</h3>`);};
 
@@ -118,7 +119,7 @@ info.onAdd = function() {
   createMap(earthquakes);
 };
   
-// A function to determine the marker color based on Earthquake's depth
+// Create a function with conditionals for marker color based on depth
 function markerColor(depth) {
     let color = ""
     if (depth <= 10) {
