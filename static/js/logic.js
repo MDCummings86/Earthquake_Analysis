@@ -126,17 +126,50 @@ function markerColor(depth) {
         return color = "yellow"
     }
     else if (depth <= 30) {
-        return color = "green"
+        return color = "yellowgreen"
     }
     else if (depth <= 50) {
-        return color = "blue"
+        return color = "green"
     }
     else if (depth <= 70) {
-        return color = "violet"
+        return color = "bluegreen"
     }
     else {
-        return color = "black"
+        return color = "blue"
     }
 }; 
+
+// // Create a legend to display information about our map.
+// let info = L.control({
+//   position: "bottomright"
+// });
+
+// // When the layer control is added, insert a div with the class of "legend".
+// info.onAdd = function() {
+//   let div = L.DomUtil.create("div", "legend");
+//   return div;
+// };
+// // Add the info legend to the map.
+// info.addTo(map)
+
+// - https://gis.stackexchange.com/questions/193161/add-legend-to-leaflet-map
+let legend = L.control({position: 'bottomleft'});
+legend.onAdd = function () {
+
+let div = L.DomUtil.create('div', 'info legend');
+categories = ['-10-10','10-30','30-50','50-70','Other'];
+
+for (var i = 0; i < categories.length; i++) {
+
+        div.innerHTML += 
+        labels.push(
+            '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+        (categories[i] ? categories[i] : '+'));
+
+    }
+    div.innerHTML = labels.join('<br>');
+return div;
+};
+legend.addTo(map);
 
 

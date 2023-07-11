@@ -1,3 +1,2 @@
 # leaflet-challenge
-first commit
-
+July 10 - I was able to refer to the student modules and citibike project for this challenge. I spent more time on Project 3 and Challenge 14 this week, so I didn't set aside enough time to complete both parts of the assignment. I'm still figuring out the legend, but I hopefully will be able to get it working by the time the assignment is graded. I'm juggling around code from the modules and stack exchange and just underestimated this part as the circle markers took longer than expected to visualize. 
