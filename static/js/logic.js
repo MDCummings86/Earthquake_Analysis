@@ -96,36 +96,48 @@ info.onAdd = function() {
   // Add the info legend to the map.
   info.addTo(map)
   
-  
+  ////////////////////////////////////////
 
-// // Loop through the cities array, and create one marker for each city object.
-// for (let i = 0; i < data.length; i++) {
+  function createFeatures(earthquakeData) {
 
-//     // Conditionals for country gdp_pc
-//     let color = "";
-//     if (data[i].features > 100000) {
-//       color = "yellow";
-//     }
-//     else if (data[i].features > 75000) {
-//       color = "blue";
-//     }
-//     else if (data[i].features > 50000) {
-//       color = "green";
-//     }
-//     else {
-//       color = "violet";
-//     }
+  function onEachFeature(features, layer){
+    layer.bindPopup(`<h3>${features.properties.place}</h3><hr><p>${new Date(features.properties.time)}</p><h3>Mag: ${features.properties.mag}</h3>`);};
+
+    let earthquakes = L.geoJSON(earthquakeData, {
+        onEachFeature: onEachFeature,
+        pointToLayer: function(features, latlng) {
+        var depth = features.geometry.coordinates[2];
+        var circleMarkerOptions = {
+            radius: features.properties.mag*5,
+            weight: 1,
+            fillColor: markerColor(depth),
+            opacity: 0.1,
+          	fillOpacity: 0.8
+        };
+        return L.circleMarker(latlng, circleMarkerOptions);
+    }
+    });
+  createMap(earthquakes);
+};
   
-//     // Add circles to the map.
-//     L.circle(data[i].location, {
-//       fillOpacity: 0.75,
-//       color: "white",
-//       fillColor: color,
-//       // Adjust the radius.
-//       radius: Math.sqrt(data[i].features) * 500
-//     }).bindPopup(`<h1>${data[i].name}</h1> <hr> <h3>GDP Per Capita (USD): ${countries[i].gdp_pc}</h3>`).addTo(myMap);
-//   }
-  
-  
+// A function to determine the marker color based on Earthquake's depth
+function markerColor(depth) {
+    let color = ""
+    if (depth <= 10) {
+        return color = "yellow"
+    }
+    else if (depth <= 30) {
+        return color = "green"
+    }
+    else if (depth <= 50) {
+        return color = "blue"
+    }
+    else if (depth <= 70) {
+        return color = "violet"
+    }
+    else {
+        return color = "black"
+    }
+}; 
 
 
